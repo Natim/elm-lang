@@ -12,7 +12,7 @@ Install
 
 .. code-block:: console
 
-    $ pip install elm-lang
+    $ pip install elm-lang --no-cache-dir
     $ elm --version
     0.19.0
 
