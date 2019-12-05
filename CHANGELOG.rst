@@ -3,6 +3,12 @@ Changelog
 
 This document describes changes in the installer between each past release.
 
+0.19.1.3 (unreleased)
+---------------------
+
+- Nothing changed yet.
+
+
 0.19.1.2 (2019-12-05)
 ---------------------
 
