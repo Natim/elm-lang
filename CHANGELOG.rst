@@ -3,8 +3,8 @@ Changelog
 
 This document describes changes in the installer between each past release.
 
-0.19.1.1 (unreleased)
--------------------
+0.19.1.1 (2019-12-05)
+---------------------
 
 - Set the elm file mode to be executable
 
