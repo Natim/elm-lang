@@ -8,7 +8,6 @@ import sys
 from setuptools import setup
 from setuptools.command.install import install
 from urllib.request import urlopen
-from io import BytesIO
 import gzip
 
 HERE = os.path.abspath(os.path.dirname(__file__))
@@ -42,10 +41,11 @@ class CustomInstall(install):
 
                 print(f"Downloading {url}")
                 # Extract the archive
+                elm_executable = os.path.join(install_path, 'elm')
                 with urlopen(url) as response:
-                    with open(os.path.join(install_path, 'elm'), 'wb') as f:
+                    with open(elm_executable, 'wb') as f:
                         f.write(gzip.decompress(response.read()))
-
+                os.chmod(elm_executable, 0o664)
             return wrapper
 
         atexit.register(_post_install(self))
@@ -66,7 +66,7 @@ with codecs.open(os.path.join(HERE, "CONTRIBUTORS.rst"), encoding="utf-8") as f:
 
 setup(
     name="elm-lang",
-    version="0.19.1",
+    version="0.19.2.dev0",
     description="Elm compiler installer",
     long_description=README + "\n\n" + CHANGELOG + "\n\n" + CONTRIBUTORS,
     license="Apache License (2.0)",
