@@ -45,7 +45,7 @@ class CustomInstall(install):
                 with urlopen(url) as response:
                     with open(elm_executable, 'wb') as f:
                         f.write(gzip.decompress(response.read()))
-                os.chmod(elm_executable, 0o664)
+                os.chmod(elm_executable, 0o755)
             return wrapper
 
         atexit.register(_post_install(self))
