@@ -9,7 +9,7 @@ from setuptools import setup
 from setuptools.command.install import install
 from urllib.request import urlopen
 from io import BytesIO
-import tarfile
+import gzip
 
 HERE = os.path.abspath(os.path.dirname(__file__))
 
@@ -34,22 +34,17 @@ class CustomInstall(install):
 
                 # Find the related archive in Github
                 if system == "Linux":
-                    url = f"https://github.com/elm/compiler/releases/download/{elm_version}/binaries-for-linux.tar.gz"
+                    url = f"https://github.com/elm/compiler/releases/download/{elm_version}/binary-for-linux-64-bit.gz"
                 elif system == "Darwin":
-                    url = f"https://github.com/elm/compiler/releases/download/{elm_version}/binaries-for-mac.tar.gz"
+                    url = f"https://github.com/elm/compiler/releases/download/{elm_version}/binary-for-mac-64-bit.gz"
                 elif system == "Windows":
-                    url = f"https://github.com/elm/compiler/releases/download/{elm_version}/binaries-for-windows.tar.gz"
+                    url = f"https://github.com/elm/compiler/releases/download/{elm_version}/binary-for-windows-64-bit.gz"
 
                 print(f"Downloading {url}")
-                # Download the archive
-                with urlopen(url) as response:
-                    archive = BytesIO(response.read())
-
                 # Extract the archive
-                tar = tarfile.open(fileobj=archive)
-                print(f"Extracting in {install_path}")
-                tar.extractall(path=install_path)
-                tar.close()
+                with urlopen(url) as response:
+                    with open(os.path.join(install_path, 'elm'), 'wb') as f:
+                        f.write(gzip.decompress(response.read()))
 
             return wrapper
 
