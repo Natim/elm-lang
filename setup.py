@@ -71,7 +71,7 @@ with codecs.open(os.path.join(HERE, "CONTRIBUTORS.rst"), encoding="utf-8") as f:
 
 setup(
     name="elm-lang",
-    version="0.19.0.1",
+    version="0.19.1",
     description="Elm compiler installer",
     long_description=README + "\n\n" + CHANGELOG + "\n\n" + CONTRIBUTORS,
     license="Apache License (2.0)",
